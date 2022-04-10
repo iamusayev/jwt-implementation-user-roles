@@ -14,7 +14,8 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping 
+    @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody UserEntity entity) {
         userService.createUser(entity);
     }
@@ -30,6 +31,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
