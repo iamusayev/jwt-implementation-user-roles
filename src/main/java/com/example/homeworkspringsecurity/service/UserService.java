@@ -20,13 +20,13 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public void createUser(UserEntity entity) {
+    public void createUser(UserEntity entity) {        
         RoleEntity roleUser = roleRepository.findByName("USER");
         List<RoleEntity> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
+        
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         entity.setRoles(userRoles);
-        entity.setStatus(Status.ACTIVE);
         userRepository.save(entity);
     }
 
